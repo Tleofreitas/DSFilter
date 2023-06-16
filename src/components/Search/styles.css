@@ -1,0 +1,6 @@
+.searchSection {
+    border-radius: 5px;
+    background-color: var(--color-bg-secondary);
+    padding: 20px;
+    height: 200px;
+}
