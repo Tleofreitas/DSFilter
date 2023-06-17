@@ -4,10 +4,10 @@ export default function Search() {
     return (
         <>
             <div className="searchSection">
-                <form className="searchUserF">
-                    <input className="searchUser" placeholder="Preço Mínimo"
+                <form className="searchProdF">
+                    <input className="searchProd" placeholder="Preço Mínimo"
                     />
-                    <input className="searchUser" placeholder="Preço Máximo"
+                    <input className="searchProd" placeholder="Preço Máximo"
                     />
                     <div className="dflex mt25">
                         <button className="buttonSub">

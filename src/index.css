@@ -4,10 +4,12 @@
     --color-bg-primary: #55BC04;
     --color-bg-secondary: white;
     --color-bg-tertiary: #6F6F6F;
+    --color-bg-four: #c2c2c2;
 
     --color-font-primary: #55BC04;
     --color-font-secondary: white;
     --color-font-tertiary: #6F6F6F;
+    --color-font-four: #c2c2c2;
 }
 
 * {
