@@ -5,6 +5,13 @@ export function findAll() : ProductDTO[] {
 }
 
 export function findByPrice(min: number, max: number): ProductDTO[] {
+  //   const config : AxiosRequestConfig = {
+  //     method: "GET",
+  //     params: {
+  //       min, max, sort
+  //     }
+  //   }
+  // return axios(config);
     return products
       .filter((x) => x.price >= min && x.price <= max)
       .sort((x, y) => x.price - y.price);
