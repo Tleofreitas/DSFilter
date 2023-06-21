@@ -1,9 +1,5 @@
 import { ProductDTO } from "./product";
 
-export function findAll() : ProductDTO[] {
-  return products;
-}
-
 export function findByPrice(min: number, max: number): ProductDTO[] {
   //   const config : AxiosRequestConfig = {
   //     method: "GET",

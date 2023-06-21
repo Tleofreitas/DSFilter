@@ -7,7 +7,7 @@ export default function SearchResult() {
         <>
             <div className="searchResultSection">
                 {
-                    productService.findAll()
+                    productService.findByPrice(0,Number.MAX_VALUE)
                         .map(product =>
                             <Card
                                 key={product.id}

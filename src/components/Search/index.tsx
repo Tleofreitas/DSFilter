@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import './styles.css';
 
-type FormData = {
-    min: string;
-    max: string;
-}
-
 type Props = {
     onSearch: Function;
 }
 
+type FormData = {
+    min: number;
+    max: number;
+}
+
 export default function Search({ onSearch }: Props) {
 
-    const [minMax, setMinMax] = useState<string>();
-
     const [formData, setFormData] = useState<FormData>({
-        min: '',
-        max: ''
+        min: 0,
+        max: Number.MAX_VALUE
     })
 
     function handleImputChange(event: any) {
@@ -27,7 +25,7 @@ export default function Search({ onSearch }: Props) {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        setMinMax(formData.min + " / "+formData.max);
+        onSearch(formData.min,formData.max);
     }
 
     return (
