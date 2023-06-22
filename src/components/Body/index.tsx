@@ -1,31 +1,51 @@
 import { useEffect, useState } from 'react';
 import Search from '../Search';
-import SearchResult from '../SearchResult';
 import './styles.css';
-import * as productServive from '../../models/product-service';
-// import { ProductDTO } from '../../models/product';
+import * as productService from '../../models/product-service';
+import Card from '../Card';
+import { ProductDTO } from '../../models/product';
 
-// const [products, setProducts] = useState<ProductDTO[]>();
-
-const [min, setMin] = useState(0);
-const [max, setMax] = useState(Number.MAX_VALUE);
-
-useEffect(() => {
-    productServive.findByPrice(min,max);
-},[min,max]);
-
-function handleSearch(searchMin: number, searchMax: number) {
-    setMin(searchMin);
-    setMax(searchMax);
-}
+type QueryParams = {
+    valueMin: number;
+    valueMax: number;
+};
 
 export default function Body() {
+
+    const MIN_PRICE = 0;
+    const MAX_PRICE = Number.MAX_VALUE;
+
+    const [queryParams, setQueryParams] = useState<QueryParams>({
+        valueMin: MIN_PRICE,
+        valueMax: MAX_PRICE,
+    });
+
+    const [products, setProducts] = useState<ProductDTO[]>([]);
+
+    useEffect(() => {
+        const newFilter = productService.findByPrice(queryParams.valueMin, queryParams.valueMax);
+        setProducts(newFilter);
+    }, [queryParams]);
+
+    function handleSearch(min: number, max: number) {
+        const newMin = min;
+        const newMax = max;
+        setQueryParams({ valueMin: newMin || MIN_PRICE, valueMax: newMax || MAX_PRICE });
+    }
+
     return (
         <>
             <main className='body-section'>
                 <section className="container">
-                    <Search onSearch={handleSearch}/>
-                    <SearchResult />
+                    <Search onSearch={handleSearch} />
+                    <div className="searchResultSection">
+                        {
+                            products.map(product =>
+                                <Card key={product.id}
+                                    product={product} />
+                            )
+                        }
+                    </div>
                 </section>
             </main>
         </>

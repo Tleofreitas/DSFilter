@@ -6,15 +6,15 @@ type Props = {
 }
 
 type FormData = {
-    min: number;
-    max: number;
+    min?: number;
+    max?: number;
 }
 
 export default function Search({ onSearch }: Props) {
 
     const [formData, setFormData] = useState<FormData>({
-        min: 0,
-        max: Number.MAX_VALUE
+        min: undefined,
+        max: undefined
     })
 
     function handleImputChange(event: any) {
@@ -25,7 +25,8 @@ export default function Search({ onSearch }: Props) {
 
     function handleSubmit(event: any) {
         event.preventDefault();
-        onSearch(formData.min,formData.max);
+        setFormData(formData);
+        onSearch(formData.min, formData.max);
     }
 
     return (
@@ -34,14 +35,14 @@ export default function Search({ onSearch }: Props) {
                 <form className="searchProdF" onSubmit={handleSubmit}>
                     <input className="searchProd" placeholder="Preço Mínimo"
                         name='min'
-                        value={formData.min}
-                        type="number"
+                        value={formData.min || ""}
+                        type="text"
                         onChange={handleImputChange}
                     />
                     <input className="searchProd" placeholder="Preço Máximo"
                         name='max'
-                        value={formData.max}
-                        type="number"
+                        value={formData.max || ""}
+                        type="text"
                         onChange={handleImputChange}
                     />
                     <div className="dflex mt25">
